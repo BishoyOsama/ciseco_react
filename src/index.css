@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes dock {
+    0% {
+        opacity: 0;
+        width: 20px;
+        @apply bg-slate-100
+    }
+
+    100% {
+        opacity: 1;
+        width: 100%;
+        @apply bg-slate-900
+    }
+}
+
+@keyframes heroImage {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(1.05) translateY(20px);
+        transform: scale(1.05) translateY(20px)
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0)
+    }
+}
+
+@keyframes leftExclusive{
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes leftExclusiveContent {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+.leftExclusive {
+    animation-name: leftExclusive;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.leftExclusiveContent {
+    animation-name: leftExclusiveContent;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.leftExclusiveButton {
+    animation-name: leftExclusiveContent;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.65s;
+    animation-fill-mode: forwards;
+}
+
+.hero-image-animation {
+    animation-name: heroImage;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.dock_animation {
+    animation-name: dock;
+    animation-timing-function: linear;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
