@@ -3,12 +3,24 @@ import { FaFacebook, FaYoutube, FaTelegram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import classNames from "classnames";
 
 const Sidebar = ({ links, showSidebar, logo, setShowSidebar, burgerRef }) => {
+  const sidebarStyles =
+    " fixed bg-white w-full sm:w-[400px] self-start h-screen py-6 flex lg:hidden flex-col gap-y-2 font-roboto shadow-black/40 shadow-md transition-all ease-in-out duration-100 z-[1000]";
+  const sidebarTransition = classNames(sidebarStyles, {
+    "opened": showSidebar,
+    "closed": !showSidebar,
+  });
   const menuRef = useRef(null);
   useEffect(() => {
     const handleOutClicks = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target) && burgerRef.current && !burgerRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        burgerRef.current &&
+        !burgerRef.current.contains(event.target)
+      ) {
         setShowSidebar(false);
       }
     };
@@ -17,12 +29,7 @@ const Sidebar = ({ links, showSidebar, logo, setShowSidebar, burgerRef }) => {
   }, []);
 
   return (
-    <div
-      ref={menuRef}
-      className={`${
-        showSidebar ? "translate-x-0" : "-translate-x-[600px]"
-      } fixed bg-white w-full min-[540px]:w-[400px] self-start h-screen py-6 flex lg:hidden flex-col gap-y-2 font-roboto shadow-black/40 shadow-md transition-all ease-in-out duration-100 z-[1000]`}
-    >
+    <div ref={menuRef} className={`${sidebarTransition}  `}>
       <button
         className="self-end text-xl text-black mr-3"
         onClick={() => setShowSidebar(false)}

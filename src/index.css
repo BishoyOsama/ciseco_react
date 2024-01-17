@@ -33,7 +33,7 @@
     }
 }
 
-@keyframes leftExclusive{
+@keyframes leftExclusive {
     0% {
         opacity: 0;
     }
@@ -90,4 +90,14 @@
     animation-timing-function: linear;
     animation-duration: 250ms;
     animation-fill-mode: forwards;
+}
+
+.opened {
+    transform: translateX(0);
+    display: flex;
+}
+
+.closed {
+    transform: translateX(-1000px);
+    display: hidden;
 }

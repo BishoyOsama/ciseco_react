@@ -70,7 +70,7 @@ const Hero = () => {
     <div
       className={`w-screen h-max bg-hero bg-circles bg-center bg-contain relative flex overflow-hidden`}
     >
-      <div className="w-full absolute flex justify-between top-[75%] lg:top-1/2 px-1 lg:px-4 text-2xl z-30">
+      <div className="w-full absolute flex justify-between top-[75%] md:top-1/2 px-1 lg:px-4 text-2xl z-30">
         <button
           className="rounded-full p-1 hover:border-slate-400 hover:border-[1px] "
           onClick={handlePerviousHeroPreview}
