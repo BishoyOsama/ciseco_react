@@ -101,3 +101,7 @@
     transform: translateX(-1000px);
     display: hidden;
 }
+
+.cards{
+    backface-visibility: visible;
+}
