@@ -104,4 +104,7 @@
 
 .cards{
     backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: translate3d(0,0,0);
+    transform-style: preserve-3d;
 }

@@ -68,7 +68,7 @@ const Hero = () => {
 
   return (
     <div
-      className={`w-screen h-max bg-hero bg-circles bg-center bg-contain relative flex overflow-hidden`}
+      className={`w-screen h-max bg-hero bg-circles bg-center bg-contain relative flex overflow-hidden mt-20`}
     >
       <div className="w-full absolute flex justify-between top-[75%] md:top-1/2 px-1 lg:px-4 text-2xl z-30">
         <button

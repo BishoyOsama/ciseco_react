@@ -23,6 +23,10 @@ export default {
       animation: {
         heroImage: "heroImage 250ms linear forwards",
       },
+      screens:{
+        "1400": "1400px",
+        "829":"829"
+      }
     },
   },
   plugins: [],

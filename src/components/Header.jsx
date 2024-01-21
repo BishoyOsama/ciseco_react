@@ -14,7 +14,7 @@ const Header = () => {
     "https://ciseco-reactjs.vercel.app/static/media/logo.95d47bbac8db6c1e8f997bbf26ca05cf.svg";
   return (
     <>
-      <div className="xl:w-[70%] w-[95%] sm:w-[90%] h-[80px] flex items-center justify-between">
+      <div className="xl:w-[70%] w-[95%] sm:w-[90%] h-[80px] flex items-center justify-between ">
         <button
           ref={burgerRef}
           className="text-3xl flex lg:hidden"
