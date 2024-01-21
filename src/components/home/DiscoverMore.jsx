@@ -4,7 +4,7 @@ import sliding from "../../configuration/sliding";
 import { useEffect } from "react";
 
 const DiscoverMore = () => {
-  const cards = [1, 2, 3, 4, 5, 6]; //just for ui purposes (will be removed)
+  const cards = [1, 2, 3, 4, 5]; //just for ui purposes (will be removed)
   useEffect(() => {
     sliding();
   }, []);
@@ -30,14 +30,12 @@ const DiscoverMore = () => {
         {/* cards */}
  
         <ul
-          className="w-full relative flex flex-shrink-0
-        flex-nowrap gap-x-2 sm:gap-x-4 m-0 p-0 overflow-hidden cards
-        md:pe-48 ps-[5%] xl:ps-[15%] touch-pan-y touch-pan-left "
+          className="w-full relative flex flex-shrink-0 gap-x-2 sm:gap-x-4 m-0 p-0 overflow-hidden cards
+        md:pe-48 ps-[5%] xl:ps-[15%] touch-pan-y touch-pan-left"
         >
+          {cards.map((card, index) => (
             <Card />
-            <Card />
-          {/* {cards.map((card, index) => (
-          ))} */}
+          ))}
         </ul>
       </div>
     </div>

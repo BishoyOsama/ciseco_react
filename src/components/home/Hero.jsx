@@ -8,8 +8,51 @@ const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [animation, setAnimation] = useState(false);
   const [called, setCalled] = useState(false);
+  const timeoutTime = data.timeoutTime
 
-  const handleHeroChanges = () => {
+  
+  const prevItem = () => {
+    const prevItem = currentImage - 1 < 0 ? data.images.length - 1 : currentImage - 1;
+    setCurrentImage(prevItem);
+    clearTimeout();
+  };
+
+  const nextItem = () => {
+    const nextItem = currentImage + 1 < data.images.length ? currentImage + 1 : 0;
+    setCurrentImage(nextItem);
+    clearTimeout();
+  };
+
+  const handleAdditionalContent = (index) => {
+    // Toggle additional content based on the current slide index
+    if(index <= 2){
+      setAnimation(true)
+      setTimeout(() => {
+        setAnimation(false)
+      },1000)
+    }else {
+      setAnimation(false)
+    }
+  };
+
+  useEffect(() => {
+    // Trigger handleAdditionalContent whenever the counter changes
+    handleAdditionalContent(currentImage);
+  }, [currentImage]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(nextItem, timeoutTime);
+    return () => clearTimeout(timeoutId);
+  }, [currentImage, timeoutTime, nextItem]);
+
+
+ /*  useEffect(() => {
+    setAnimation(prev => !prev)
+    return () => clearTimeout();
+  }, [currentImage, timeoutTime]); */
+
+  
+  /* const handleHeroChanges = () => {
     if (!called) {
       if (currentImage === data.heroImage.length - 1) {
         setTimeout(() => {
@@ -38,8 +81,7 @@ const Hero = () => {
     setAnimation(true);
     setCurrentImage(newHeroIndex);
     setCalled(false);
-    /* setTimeout(() => {
-    }, 3000); */
+    
   };
 
   const handleNextHeroPreview = () => {
@@ -49,8 +91,7 @@ const Hero = () => {
     setAnimation(true);
     setCurrentImage(newHeroIndex);
     setCalled(false);
-    /* setTimeout(() => {
-    }, 3000); */
+    
   };
 
   const handleDock = (index) => {
@@ -58,13 +99,12 @@ const Hero = () => {
     setAnimation(true);
     setCurrentImage(index);
     setCalled(false);
-    /* setTimeout(() => {
-    }, 3000); */
+    
   };
 
   useEffect(() => {
     handleHeroChanges();
-  }, [currentImage]);
+  }, [currentImage]); */
 
   return (
     <div
@@ -73,13 +113,13 @@ const Hero = () => {
       <div className="w-full absolute flex justify-between top-[75%] md:top-1/2 px-1 lg:px-4 text-2xl z-30">
         <button
           className="rounded-full p-1 hover:border-slate-400 hover:border-[1px] "
-          onClick={handlePerviousHeroPreview}
+          onClick={prevItem}
         >
           <PiArrowLeftLight />
         </button>
         <button
           className="rounded-full p-1 hover:border-slate-400 hover:border-[1px] "
-          onClick={handleNextHeroPreview}
+          onClick={nextItem}
         >
           <PiArrowRightLight />
         </button>
@@ -88,7 +128,7 @@ const Hero = () => {
       <div className="w-full px-0 lg:px-[4rem] xl:px-[16rem] mx-auto h-full relative pt-16 sm:py-20 lg:py-44 flex flex-col gap-y-16 lg:block items-center">
         <div
           className={`w-full space-y-8 px-2 min-[320]:px-[4rem] lg:max-w-3xl h-full font-roboto lg:relative z-[20]  ${
-            animation ? "leftExclusive leftExclusiveContent" : null
+            animation ? "leftExclusiveContent" : null
           }  `}
         >
           <p className="text-slate-700 text-lg">
@@ -111,10 +151,10 @@ const Hero = () => {
           </button>
         </div>
         <div className="h-full lg:absolute right-20 bottom-0 top-0 max-w-xl xl:max-w-3xl 2xl:max-w-4xl">
-          {data.heroImage.map((imageSrc, index) => (
+          {data.images.map((image, index) => (
             <img
-              key={index}
-              src={imageSrc}
+              key={image.key}
+              src={image.src}
               alt="Exclusive collection for everyone"
               className={`w-full object-contain object-right-bottom h-full ${
                 currentImage === index ? "animate-heroImage" : "hidden"
@@ -125,7 +165,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-1 w-fit left-1/2 flex justify-center -translate-x-1/2">
-        {data.heroImage.map((imageDock, index) => (
+        {data.images.map((imageDock, index) => (
           <div
             className="py-1.5 cursor-pointer px-2 relative"
             key={index}

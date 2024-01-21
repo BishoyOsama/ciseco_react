@@ -55,6 +55,18 @@
     }
 }
 
+@keyframes leftExclusiveButton {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 
 
 .leftExclusive {
@@ -72,9 +84,9 @@
 }
 
 .leftExclusiveButton {
-    animation-name: leftExclusiveContent;
+    animation-name: leftExclusiveButton;
     animation-timing-function: ease-in-out;
-    animation-duration: 0.65s;
+    animation-duration: 0.85s;
     animation-fill-mode: forwards;
 }
 
@@ -104,7 +116,7 @@
 
 .cards{
     backface-visibility: visible;
-    -webkit-backface-visibility: visible;
-    transform: translate3d(0,0,0);
-    transform-style: preserve-3d;
+}
+.cards::-webkit-scrollbar{
+    display: none;
 }
