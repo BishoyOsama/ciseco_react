@@ -25,7 +25,6 @@ export default {
       },
       screens:{
         "1400": "1400px",
-        "829":"829"
       }
     },
   },
