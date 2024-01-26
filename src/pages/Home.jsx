@@ -1,3 +1,4 @@
+import Carousel from "../components/home/Carousel"
 import DiscoverMore from "../components/home/DiscoverMore"
 import Hero from "../components/home/Hero"
 

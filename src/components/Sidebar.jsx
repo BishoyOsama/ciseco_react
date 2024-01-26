@@ -7,7 +7,7 @@ import classNames from "classnames";
 
 const Sidebar = ({ links, showSidebar, logo, setShowSidebar, burgerRef }) => {
   const sidebarStyles =
-    " fixed bg-white w-full sm:w-[400px] self-start h-screen py-6 flex lg:hidden flex-col gap-y-2 font-roboto shadow-black/40 shadow-md transition-all ease-in-out duration-100 z-[1000]";
+    " fixed bg-white w-full sm:w-[400px] left-0 self-start h-screen py-6 flex lg:hidden flex-col gap-y-2 font-roboto shadow-black/40 shadow-md transition-all ease-in-out duration-100 z-[1000]";
   const sidebarTransition = classNames(sidebarStyles, {
     "opened": showSidebar,
     "closed": !showSidebar,

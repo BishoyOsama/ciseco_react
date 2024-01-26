@@ -1,42 +1,52 @@
 import { PiArrowRightLight } from "react-icons/pi";
 import { PiArrowLeftLight } from "react-icons/pi";
 import { IoSearchOutline } from "react-icons/io5";
-import data from "../../data";
+import { heroData } from "../../data";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [animation, setAnimation] = useState(false);
-  const [called, setCalled] = useState(false);
-  const timeoutTime = data.timeoutTime
+  const [animation, setAnimation] = useState(false);;
+  const timeoutTime = heroData.timeoutTime;
 
-  
   const prevItem = () => {
-    const prevItem = currentImage - 1 < 0 ? data.images.length - 1 : currentImage - 1;
+    const prevItem =
+      currentImage - 1 < 0 ? heroData.images.length - 1 : currentImage - 1;
     setCurrentImage(prevItem);
     clearTimeout();
   };
 
   const nextItem = () => {
-    const nextItem = currentImage + 1 < data.images.length ? currentImage + 1 : 0;
+    const nextItem =
+      currentImage + 1 < heroData.images.length ? currentImage + 1 : 0;
     setCurrentImage(nextItem);
     clearTimeout();
   };
 
   const handleAdditionalContent = (index) => {
-    // Toggle additional content based on the current slide index
-    if(index <= 2){
-      setAnimation(true)
+    if (index <= 2) {
+      setAnimation(true);
       setTimeout(() => {
-        setAnimation(false)
-      },1000)
-    }else {
-      setAnimation(false)
+        setAnimation(false);
+      }, 1000);
+    } else {
+      setAnimation(false);
+    }
+  };
+
+  const handleDock = (index) => {
+    if (index <= 2) {
+      setAnimation(true);
+      setCurrentImage(index);
+      setTimeout(() => {
+        setAnimation(false);
+      }, 1000);
+    } else {
+      setAnimation(false);
     }
   };
 
   useEffect(() => {
-    // Trigger handleAdditionalContent whenever the counter changes
     handleAdditionalContent(currentImage);
   }, [currentImage]);
 
@@ -44,67 +54,6 @@ const Hero = () => {
     const timeoutId = setTimeout(nextItem, timeoutTime);
     return () => clearTimeout(timeoutId);
   }, [currentImage, timeoutTime, nextItem]);
-
-
- /*  useEffect(() => {
-    setAnimation(prev => !prev)
-    return () => clearTimeout();
-  }, [currentImage, timeoutTime]); */
-
-  
-  /* const handleHeroChanges = () => {
-    if (!called) {
-      if (currentImage === data.heroImage.length - 1) {
-        setTimeout(() => {
-          setAnimation(true);
-          setCurrentImage(0);
-        }, 3000);
-      } else {
-        setTimeout(() => {
-          setAnimation(true);
-          setCurrentImage(currentImage + 1);
-        }, 3000);
-      }
-    }
-  };
-
-  setTimeout(() => {
-    setAnimation(false);
-  }, 600);
-
-  const handlePerviousHeroPreview = () => {
-    setCalled(true);
-    const isFirstHero = currentImage === 0;
-    const newHeroIndex = isFirstHero
-      ? data.heroImage.length - 1
-      : currentImage - 1;
-    setAnimation(true);
-    setCurrentImage(newHeroIndex);
-    setCalled(false);
-    
-  };
-
-  const handleNextHeroPreview = () => {
-    setCalled(true);
-    const isLastHero = currentImage === data.heroImage.length - 1;
-    const newHeroIndex = isLastHero ? 0 : currentImage + 1;
-    setAnimation(true);
-    setCurrentImage(newHeroIndex);
-    setCalled(false);
-    
-  };
-
-  const handleDock = (index) => {
-    setCalled(true);
-    setAnimation(true);
-    setCurrentImage(index);
-    setCalled(false);
-    
-  };
-
-  useEffect(() => {
-    handleHeroChanges();
-  }, [currentImage]); */
 
   return (
     <div
@@ -151,7 +100,7 @@ const Hero = () => {
           </button>
         </div>
         <div className="h-full lg:absolute right-20 bottom-0 top-0 max-w-xl xl:max-w-3xl 2xl:max-w-4xl">
-          {data.images.map((image, index) => (
+          {heroData.images.map((image, index) => (
             <img
               key={image.key}
               src={image.src}
@@ -165,7 +114,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-1 w-fit left-1/2 flex justify-center -translate-x-1/2">
-        {data.images.map((imageDock, index) => (
+        {heroData.images.map((imageDock, index) => (
           <div
             className="py-1.5 cursor-pointer px-2 relative"
             key={index}

@@ -1,5 +1,6 @@
 const sliding = () => {
   const cardWrapper = document.querySelector(".cards");
+  const card = document.querySelectorAll(".card_item")
   let isDown = false;
   let startX, scrollLeft;
   /* touch screens */
