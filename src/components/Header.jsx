@@ -23,7 +23,7 @@ const Header = () => {
           <RxHamburgerMenu />
         </button>
         <div>
-          <img src={logo} alt="ciseco logo" />
+          <img src={logo} alt="ciseco logo" className="w-[70%] sm:w-full mx-auto"/>
         </div>
         <nav className="lg:flex hidden">
           <ul className="flex justify-center items-center gap-x-4 font-roboto font-semibold capitalize">

@@ -1,21 +1,14 @@
 import { PiArrowLeftLight, PiArrowRightLight } from "react-icons/pi";
 import Card from "../Card";
-import sliding from "../../configuration/sliding";
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useDragControls } from "framer-motion";
+import { useMotionValue, useDragControls } from "framer-motion";
+import { cardData as cards } from "../../data";
 
 const DiscoverMore = () => {
-  const cards = [1, 2, 3, 4]; //just for ui purposes (will be removed)
-  /* useEffect(() => {
-    sliding();
-  }, []); */
-  const cardItem = document.querySelectorAll(".card-item");
   const [documentWidth, setDocumentWidth] = useState(window.innerWidth);
   const cardRef = useRef(null);
   const dragControls = useDragControls();
   const [positionX, setPositionX] = useState(0);
-  const innerCarouselRef = useRef(null);
-  const [dragged, setDragged] = useState(false);
   const carouselRef = useRef(null);
   const [cardIndex, setCardIndex] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(0);
@@ -60,8 +53,6 @@ const DiscoverMore = () => {
     /* const x = dragX.get(); */
     const point = info.point.x;
 
-    /* const amount = cardWidth / 2; */
-
     if (
       info.offset.x < -(cardWidth / 2) &&
       info.velocity.x < 0 &&
@@ -99,7 +90,7 @@ const DiscoverMore = () => {
   };
 
   return (
-    <div className=" font-roboto mt-24">
+    <div className=" font-roboto my-24">
       <div className="flex flex-col gap-y-10 ">
         <div
           className="flex flex-col gap-y-2 md:flex-row md:justify-between 
@@ -127,20 +118,6 @@ const DiscoverMore = () => {
           </div>
         </div>
         {/* cards */}
-
-        {/* <motion.ul
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          animate={{ translateX: `${cardIndex * 100}%` }}
-          style={{ x: dragX }}
-          onDragEnd={onDragEnd}
-          className="w-full relative flex flex-shrink-0  gap-x-2 sm:gap-x-4 m-0 p-0 overflow-hidden cards
-        md:pe-48 ps-[5%] xl:ps-[15%] touch-pan-y touch-pan-left cursor-grab active:cursor-grabbing"
-        >
-          {cards.map((card, index) => (
-            <Card ref={ref}/>
-          ))}
-        </motion.ul> */}
 
         <div className="carousel" ref={carouselRef}>
           <Card
