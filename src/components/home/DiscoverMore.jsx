@@ -1,24 +1,16 @@
 import { PiArrowLeftLight, PiArrowRightLight } from "react-icons/pi";
 import Card from "../Card";
 import { useEffect, useRef, useState } from "react";
-import { useMotionValue, useDragControls } from "framer-motion";
 import { cardData as cards } from "../../data";
 
 const DiscoverMore = () => {
   const [documentWidth, setDocumentWidth] = useState(window.innerWidth);
   const cardRef = useRef(null);
-  const dragControls = useDragControls();
   const [positionX, setPositionX] = useState(0);
   const carouselRef = useRef(null);
   const [cardIndex, setCardIndex] = useState(0);
   const [carouselWidth, setCarouselWidth] = useState(0);
-
-  const dragX = useMotionValue(0);
-
-  /* const [drag_buffer, setDrag_buffer] = useState(0); */
-  const drag_buffer = 50;
-
-  /* const drag_buffer = cardItem.clientWidth */
+  const [cardWidth, setCardWidth] = useState(0);
 
   useEffect(() => {
     const listenResize = () => {
@@ -38,55 +30,37 @@ const DiscoverMore = () => {
     );
   }, []);
 
-  const [cardWidth, setCardWidth] = useState(0);
-
-  /* useEffect(() => {
-    if (cardRef.current) {
-      setCardWidth(cardRef.current.getBoundingClientRect().width);
-      
-    }
-  }, []); */
-
-  /* console.log(window.getComputedStyle(cardRef.current).marginRight) */
-
   const handleDrag = (_, info) => {
-    /* const x = dragX.get(); */
-    const point = info.point.x;
-
-    if (
-      info.offset.x < -(cardWidth / 2) &&
-      info.velocity.x < 0 &&
-      cardIndex < cards.length - 1
-    ) {
+    if (info.velocity.x < 0 && cardIndex < cards.length - 1) {
       setCardIndex((prev) => prev + 1);
-      setPositionX(-(cardWidth * cardIndex + 50));
+      setPositionX(-(cardWidth * cardIndex) - 20 * cardIndex);
     } else if (
       info.offset.x > cardWidth / 2 &&
       info.velocity.x > 0 &&
       cardIndex > 0
     ) {
       setCardIndex((prev) => prev - 1);
-      setPositionX(-(cardWidth * cardIndex + 50));
+      setPositionX(-(cardWidth * cardIndex) - 20 * cardIndex);
     } else if (info.velocity.x < 0 && cardIndex === cards.length - 1) {
       // moving left and last card
       setCardIndex(0);
       setPositionX(0);
     } else if (info.velocity.x > 0 && cardIndex === 0) {
       setCardIndex(cards.length - 1);
-      setPositionX(-(cardWidth * cardIndex + 50));
+      setPositionX(-(cardWidth * cardIndex));
     }
   };
 
   const nextCard = () => {
     const nextIndex = cardIndex < cards.length - 1 ? cardIndex + 1 : 0;
     setCardIndex(nextIndex);
-    setPositionX(-(cardWidth * nextIndex + 50));
+    setPositionX(-(cardWidth * nextIndex) - 20 * nextIndex);
   };
 
   const prevCard = () => {
     const prevIndex = cardIndex === 0 ? cards.length - 1 : cardIndex - 1;
     setCardIndex(prevIndex);
-    setPositionX(-(cardWidth * prevIndex + 50));
+    setPositionX(-(cardWidth * prevIndex) - 20 * prevIndex);
   };
 
   return (
@@ -123,9 +97,7 @@ const DiscoverMore = () => {
           <Card
             carouselWidth={carouselWidth}
             onDragEnd={handleDrag}
-            dragX={dragX}
             ref={cardRef}
-            dragControls={dragControls}
             positionX={positionX}
           />
         </div>

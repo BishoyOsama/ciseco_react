@@ -85,7 +85,7 @@ export const cisecoCons = {
       title: "Filter & Discover",
       text: "Smart filtering and suggestions make it easy to find",
       color: "#fee2e2",
-      stepColor: "#d47875"
+      stepColor: "#d47875",
     },
     {
       image:
@@ -93,7 +93,7 @@ export const cisecoCons = {
       title: "Add to bag",
       text: "Easily select the correct items and add them to the cart",
       color: "#e0e7ff",
-      stepColor: "#6632a5"
+      stepColor: "#6632a5",
     },
     {
       image:
@@ -101,7 +101,7 @@ export const cisecoCons = {
       title: "Fast shipping",
       text: "The carrier will confirm and ship quickly to you",
       color: "#fef9c3",
-      stepColor: "#c4883e"
+      stepColor: "#c4883e",
     },
     {
       image:
@@ -109,7 +109,34 @@ export const cisecoCons = {
       title: "Enjoy the product",
       text: "Have fun and enjoy your 5-star quality products",
       color: "#f3e8ff",
-      stepColor: "#785bbe"
+      stepColor: "#785bbe",
     },
   ],
 };
+
+export const shopByCategoryData = [
+  {
+    img: "https://ciseco-reactjs.vercel.app/static/media/department1.8c732cf70fb1db8a427c.png",
+    bgColor: "bg-indigo-100",
+    kitsType: "Travel Kits",
+    categoriesCount: "20+",
+  },
+  {
+    img: "https://ciseco-reactjs.vercel.app/static/media/department2.0f6d094cc355eea274f9.png",
+    bgColor: "bg-slate-100",
+    kitsType: "Beauty Products",
+    categoriesCount: "10+",
+  },
+  {
+    img: "https://ciseco-reactjs.vercel.app/static/media/department3.03411a1852db06674802.png",
+    bgColor: "bg-sky-100",
+    kitsType: "Sport Kits",
+    categoriesCount: "34+",
+  },
+  {
+    img: "https://ciseco-reactjs.vercel.app/static/media/department4.f4edc8706f19e8dbbd78.png",
+    bgColor: "bg-orange-100",
+    kitsType: "Pets Food",
+    categoriesCount: "12+",
+  },
+];

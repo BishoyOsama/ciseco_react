@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { cardData } from "../data";
 import { Link } from "react-router-dom";
 
-const Card = ({ onDragEnd, carouselWidth, dragControls, positionX }, ref) => {
+const Card = ({ onDragEnd, carouselWidth, positionX }, ref) => {
   const SPRING_OPTIONS = {
     type: "spring",
     mass: 3,
@@ -14,11 +14,10 @@ const Card = ({ onDragEnd, carouselWidth, dragControls, positionX }, ref) => {
   return (
     <>
       <motion.ul
-        className="inner-carousel cards flex flex-shrink-0 ps-[5%] lg:ps-[10%] xl:ps-[15%] active:cursor-grabbing cursor-grab"
+        className="inner-carousel cards flex flex-shrink-0 gap-x-5 ps-[5%] lg:ps-[10%] xl:ps-[15%] active:cursor-grabbing cursor-grab"
         drag="x"
         dragConstraints={{ right: 0, left: -(carouselWidth + 300) }}
         onDragEnd={onDragEnd}
-        dragControls={dragControls}
         animate={{ x: positionX }}
         dragElastic={0.2}
         dragTransition={SPRING_OPTIONS}
@@ -27,7 +26,7 @@ const Card = ({ onDragEnd, carouselWidth, dragControls, positionX }, ref) => {
           <motion.li
             className={`relative aspect-[16/9] w-[95%] sm:w-[70%] md:w-[65%]
                   lg:w-[50%] xl:w-[40%] 2xl:w-[30%] h-full rounded-xl p-4 sm:p-5 flex flex-shrink-0
-                  font-roboto z-10 card-item mr-5`}
+                  font-roboto z-10 card-item `}
             key={index}
             ref={ref}
             style={{ backgroundColor: `${card.bgColor}` }}
