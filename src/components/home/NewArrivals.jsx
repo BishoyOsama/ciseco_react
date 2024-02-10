@@ -1,9 +1,10 @@
-import { PiArrowLeftLight, PiArrowRightLight } from "react-icons/pi";
-import CarouselShopByCategory from "./CarouselShopByCategory";
+import React from "react";
 import withDrag from "../../withDrag";
-import { shopByCategoryData as cards } from "../../data";
+import { PiArrowLeftLight, PiArrowRightLight } from "react-icons/pi";
+import { newArrivals as cards } from "../../data";
+import CarouselNewArrivals from "./CarouselNewArrivals";
 
-const ShopByCategory = ({
+const NewArrivals = ({
   cardRef,
   positionX,
   carouselRef,
@@ -14,13 +15,14 @@ const ShopByCategory = ({
 }) => {
   return (
     <div className=" font-roboto my-24 w-full">
-      <div className="flex flex-col h-[450px] sm:h-[610px] md:h-[450px] gap-y-10 w-[90%] lg:w-[80%] xl:w-[70%] mx-auto">
+      <div className="flex flex-col h-[700px] sm:h-[610px] md:h-[600px] gap-y-10 w-[90%] lg:w-[80%] xl:w-[90%] 2xl:w-[70%] mx-auto">
         <div
           className="flex flex-col gap-y-2 md:flex-row md:justify-between 
         md:items-center"
         >
           <h1 className="text-3xl md:text-4xl font-semibold w-full">
-            Shop by department
+            New Arrivals.{" "}
+            <span className="text-slate-400">REY backpacks & bags</span>
           </h1>
           <div className="flex gap-x-2 self-end">
             <button
@@ -43,7 +45,7 @@ const ShopByCategory = ({
           className="outer-carousel w-full h-full overflow-hidden pe-6"
           ref={carouselRef}
         >
-          <CarouselShopByCategory
+          <CarouselNewArrivals
             positionX={positionX}
             carouselWidth={carouselWidth}
             onDragEnd={handleDrag}
@@ -55,4 +57,4 @@ const ShopByCategory = ({
   );
 };
 
-export default withDrag(ShopByCategory, cards);
+export default withDrag(NewArrivals, cards);

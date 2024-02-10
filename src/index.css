@@ -114,8 +114,8 @@
     display: hidden;
 }
 
-.cards{
+.cards {
     backface-visibility: hidden;
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s
 }

@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { shopByCategoryData as cards } from "./data";
+import { chosenByExpertsData, shopByCategoryData } from "./data";
 
-const withDrag = (WrappedComponent) => {
+
+const withDrag = (WrappedComponent, cards) => {
   const WithDrag = (props) => {
     const [documentWidth, setDocumentWidth] = useState(window.innerWidth);
     const cardRef = useRef(null);
@@ -10,6 +11,7 @@ const withDrag = (WrappedComponent) => {
     const [cardIndex, setCardIndex] = useState(0);
     const [carouselWidth, setCarouselWidth] = useState(0);
     const [cardWidth, setCardWidth] = useState(0);
+    
 
     useEffect(() => {
       const listenResize = () => {
@@ -29,15 +31,17 @@ const withDrag = (WrappedComponent) => {
       );
     }, []);
 
+    let movement = 2
+
     const handleDrag = (_, info) => {
       let newIndexNext = 0;
       if (info.velocity.x < 0 && documentWidth >= 1024) {
-        newIndexNext = (cardIndex + 1) % (cards.length - 2);
+        newIndexNext = (cardIndex + 1) % (cards.length - movement);
       } else if (info.velocity.x < 0 && documentWidth < 1024) {
         newIndexNext = (cardIndex + 1) % cards.length;
       } else if (info.velocity.x > 0 && documentWidth >= 1024) {
         newIndexNext =
-          (cardIndex - 1 + (cards.length - 2)) % (cards.length - 2);
+          (cardIndex - 1 + (cards.length - movement)) % (cards.length - movement);
       } else if (info.velocity.x > 0 && documentWidth < 1024) {
         newIndexNext = (cardIndex - 1 + cards.length) % cards.length;
       }
@@ -48,7 +52,7 @@ const withDrag = (WrappedComponent) => {
     const nextCard = () => {
       const nextIndex =
         documentWidth >= 1024
-          ? (cardIndex + 1) % (cards.length - 2)
+          ? (cardIndex + 1) % (cards.length - movement)
           : (cardIndex + 1) % cards.length;
       setCardIndex(nextIndex);
       setPositionX(-(nextIndex * cardWidth) - 28 * nextIndex);
@@ -57,7 +61,7 @@ const withDrag = (WrappedComponent) => {
     const prevCard = () => {
       const prevIndex =
         documentWidth >= 1024
-          ? (cardIndex - 1 + (cards.length - 2)) % (cards.length - 2)
+          ? (cardIndex - 1 + (cards.length - movement)) % (cards.length - movement)
           : (cardIndex - 1 + cards.length) % cards.length;
       setCardIndex(prevIndex);
       setPositionX(-(prevIndex * cardWidth) - 28 * prevIndex);

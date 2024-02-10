@@ -46,7 +46,7 @@ const CarouselShopByCategory = (
                     className="object-cover w-full h-full rounded-2xl"
                   />
                 </div>
-                <span class="opacity-0 group-hover:opacity-100 absolute inset-0 h-full bg-black bg-opacity-10 transition-opacity"></span>
+                <span className="opacity-0 group-hover:opacity-100 absolute inset-0 h-full bg-black bg-opacity-10 transition-opacity"></span>
               </div>
             </div>
             <div className="mt-5 flex-1 text-center">
@@ -73,7 +73,7 @@ const CarouselShopByCategory = (
               </div>
               <span className="text-sm mt-1 text-slate-800">Show me more</span>
             </div>
-            <span class="opacity-0 group-hover:opacity-100 absolute inset-0 bg-black bg-opacity-10 transition-opacity"></span>
+            <span className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-black bg-opacity-10 transition-opacity"></span>
           </div>
         </Link>
       </motion.li>
